@@ -6,12 +6,11 @@ on:
       - "*"
 
 jobs:
-  only-on-dev:
-    if: github.ref == 'refs/heads/main'
-    name: Only on main branch
-    runs-on: ubuntu-latest
-    steps:
-      - name: shell script
-        run: echo "running  on main branch"
+  if: github.ref == 'refs/heads/main'
+  name: Only on main branch
+  runs-on: ubuntu-latest
+  steps:
+    - name: shell script
+      run: echo "running  on main branch"
 
   
