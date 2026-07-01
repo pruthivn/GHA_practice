@@ -1,0 +1,16 @@
+name: if condition
+
+on:
+  push:
+    - "*"
+
+jobs:
+  only-on-main:
+    if: github.ref == 'refs/heads/main'
+    name: Only on main branch
+    runs-on: ubuntu-latest
+    steps:
+      - name: shell script
+        run: echo " running  on main branch"
+
+  
