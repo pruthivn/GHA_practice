@@ -1,0 +1,38 @@
+name: Workflow level variables
+
+on: workflow_dispatch
+
+env:
+    VAR: workflow level variable
+# steplevel > joblevel > workflowlevel
+#Picks from workflow level variable    
+jobs:
+    print-cloud:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Print cloud variable
+              run: echo "I am running on $VAR"
+#Job level variable overrides workflow level variable
+    print-cloud-again:
+        runs-on: ubuntu-latest
+        env:
+            VAR: job level variable
+        steps:
+            - name: Print cloud variable again
+              run: echo "I am running on $VAR"
+#Step level variable overrides job and workflow level variable
+    print-cloud-step-level:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Print cloud variable again
+              env:
+                VAR: step level variable
+              run: echo "I am running on $VAR"
+#config variables are defined at the repository level and can be used across all workflows in the repository. They are accessed using the vars context and take precedence over workflow, job, and step level variables.
+    print-repo-level-variable:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Print project variable 
+              env:
+                VAR: repository level variable
+              run: echo "I am running a project named ${{ vars.VAR }}"
