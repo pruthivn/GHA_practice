@@ -6,7 +6,7 @@ on:
       - "*"
 
 jobs:
-  only-on-main:
+  only-on-dev:
     if: github.ref == 'refs/heads/main'
     name: Only on main branch
     runs-on: ubuntu-latest
