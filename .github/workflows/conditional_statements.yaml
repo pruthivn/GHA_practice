@@ -6,11 +6,20 @@ on:
       - "*"
 
 jobs:
-  if: github.ref == 'refs/heads/main'
-  name: Only on main branch
-  runs-on: ubuntu-latest
-  steps:
-    - name: shell script
-      run: echo "running  on main branch"
+  matrix-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node: [12, 14, 16]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm install
+      - run: npm test.js
+      
 
   
