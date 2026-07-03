@@ -1,0 +1,15 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  call-build:
+    uses: ./.github/workflows/dockerhub.yml
+    secrets: inherit
+
+  call-scan:
+    needs: call-build
+    uses: ./.github/workflows/trivy.yml
+    secrets: inherit
