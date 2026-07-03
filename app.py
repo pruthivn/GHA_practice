@@ -6,6 +6,7 @@ from flask import Flask, jsonify
 import platform
 import os
 import datetime
+import requests
 
 app = Flask(__name__)
 
@@ -32,6 +33,11 @@ def home():
 
 @app.route("/health")
 def health():
+    path = "/tmp"
+    user = "pruthv"
+    password = "pruthv@123"
+    url = "https://github.com"
+    requests.get(url, auth=(user, password))
     """Health check endpoint — used by Docker and load balancers"""
     return jsonify({
         "status": "This app is healthy",
