@@ -6,10 +6,10 @@ on:
 
 jobs:
   call-build:
-    uses: ./.github/workflows/dockerhub.yml
+    uses: .github/workflows/dockerhub.yml
     secrets: inherit
 
   call-scan:
     needs: call-build
-    uses: ./.github/workflows/trivy.yml
+    uses: .github/workflows/trivy.yml
     secrets: inherit
